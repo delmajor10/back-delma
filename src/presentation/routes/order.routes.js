@@ -1,5 +1,7 @@
 const { Router } = require('express');
-const OrderController = require('../controllers/order.controller');
+const OrderController = require('../controller/order.controller');
+const authenticateToken = require('../middlewares/auth.middleware');
+const isAdmin = require('../middlewares/admin.middleware');
 
 // Inyección de dependencias manual
 const OrderService = require('../../application/use-cases/order.service');
@@ -13,8 +15,12 @@ const router = Router();
 
 router.get('/', orderController.getAll);
 router.get('/:id', orderController.getById);
-router.post('/', orderController.create);
-router.put('/:id', orderController.update);
-router.delete('/:id', orderController.delete);
+// router.post('/', orderController.create);
+// router.put('/:id', orderController.update);
+// router.delete('/:id', orderController.delete);
+
+router.post('/', [authenticateToken, isAdmin], orderController.create);
+router.put('/:id', [authenticateToken, isAdmin], orderController.update);
+router.delete('/:id', [authenticateToken, isAdmin], orderController.delete);
 
 module.exports = router;
