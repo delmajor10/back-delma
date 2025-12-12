@@ -23,6 +23,7 @@ const router = Router();
  * /users:
  *   get:
  *     summary: Retrieve a list of users
+ *     tags: [Users]
  *     responses:
  *       200:
  *         description: A list of users.
@@ -40,6 +41,7 @@ router.get('/', asyncHandler(userController.getAll));
  * /users/{id}:
  *   get:
  *     summary: Retrieve a single user by ID
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
@@ -63,6 +65,7 @@ router.get('/:id', asyncHandler(userController.getById));
  * /users:
  *   post:
  *     summary: Create a new user
+ *     tags: [Users]
  *     requestBody:
  *       required: true
  *       content:
@@ -88,6 +91,7 @@ router.post('/', asyncHandler(userController.create));
  * /users/{id}:
  *   put:
  *     summary: Update a user
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
@@ -117,6 +121,7 @@ router.put('/:id', asyncHandler(userController.update));
  * /users/{id}:
  *   delete:
  *     summary: Delete a user
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
